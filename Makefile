@@ -7,40 +7,51 @@ REMOVE = rm -r
 OBJ_PATH = obj
 SRC_PATH = src
 INC_PATH = include
-MLX_PATH = MLX42
-MLX_LIB_PATH = MLX42/libmlx42.a
 
-HEADERS	= -I $(INC_PATH) -I $(MLX_PATH)/include/MLX42
-LIBS = ./$(MLX_PATH)/libmlx42.a -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
+MLX_PATH = assets/MLX42
+MLX_LIB_PATH = assets/MLX42/libmlx42.a
+
+LIBFT_PATH = assets/libft
+LIBFT_LIB_PATH = assets/libft/libft.a
+
+HEADERS	= -I $(INC_PATH) -I $(MLX_PATH)/include/MLX42 -I $(LIBFT_PATH)/include/libft
+LIBS = $(MLX_LIB_PATH) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
+
 SRC =  $(wildcard $(SRC_PATH)/*.c)
 OBJ = $(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
 
-B_RED = \033[1;31m
-B_GREEN = \033[1;32m
-BLUE = \033[36m
+ORANGE = \033[1;38;5;208m
 RESET = \033[0m
 U_LINE = \033[4m
+YELLOW = \033[1;38;5;226m
 
-all: $(MLX_LIB_PATH) $(NAME)
+all: $(MLX_LIB_PATH) $(LIBFT_LIB_PATH) $(NAME)
+
+.SILENT: all $(MLX_LIB_PATH) $(LIBFT_LIB_PATH) $(NAME) $(OBJ) clean fclean re
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) $(LIBS) $(HEADERS) -o $@
-	@echo "\n$(U_LINE)✅$(BLUE) $(NAME): Compiled ✅$(RESET) \n"
+	$(CC) $(OBJ) $(LIBFT_LIB_PATH) $(LIBS) $(HEADERS) -o $@
+	echo "\n$(ORANGE)$(U_LINE)⭐️ $(NAME): Compiled ⭐️$(RESET) \n"
 
 $(MLX_LIB_PATH):
-	@$(MAKE) -C $(MLX_PATH)
+	$(MAKE) -C $(MLX_PATH)
+
+$(LIBFT_LIB_PATH):
+	$(MAKE) -C $(LIBFT_PATH)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
-	@mkdir -p $(OBJ_PATH)
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
-
+	mkdir -p $(OBJ_PATH)
+	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
+	echo "$(YELLOW)fractol Compiling:$(RESET) $(notdir $<)"
 clean:
-	@$(REMOVE) $(OBJ_PATH)
-	@$(MAKE) -C $(MLX_PATH) clean
+	$(REMOVE) $(OBJ_PATH)
+	$(MAKE) -C $(MLX_PATH) clean
+	$(MAKE) -C $(LIBFT_PATH) clean
 
 fclean: clean
-	@$(REMOVE) $(NAME)
-	@$(MAKE) -s -C $(MLX_PATH) fclean
+	$(REMOVE) $(NAME)
+	$(MAKE) -C $(MLX_PATH) fclean
+	$(MAKE) -C $(LIBFT_PATH) fclean
 
 re: fclean all
 

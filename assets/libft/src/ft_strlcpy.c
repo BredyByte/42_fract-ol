@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/07/30 19:21:08 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/04/19 17:00:25 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/06/19 15:59:28 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "libft.h"
 
-int	main(int argv, char **argc)
+size_t	ft_strlcpy(char *dest, const char *src, size_t len)
 {
-	(void) argv;
-	(void) argc;
-	ft_printf("Hlo, World!\n");
-	return (0);
+	size_t	i;
+
+	i = -1;
+	if (!len)
+		return (ft_strlen(src));
+	while (src[++i] && i < (len - 1))
+		dest[i] = src[i];
+	dest[i] = '\0';
+	return (ft_strlen(src));
 }

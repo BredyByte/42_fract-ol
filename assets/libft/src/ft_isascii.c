@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/07/30 19:21:08 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/04/19 12:11:18 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/06/19 15:59:49 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "libft.h"
 
-int	main(int argv, char **argc)
+int	ft_isascii(int c)
 {
-	(void) argv;
-	(void) argc;
-	ft_printf("Hlo, World!\n");
-	return (0);
+	return ((c >= 0 && c <= 127));
 }

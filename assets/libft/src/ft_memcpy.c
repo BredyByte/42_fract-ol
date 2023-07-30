@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/07/30 19:21:08 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/04/19 15:16:23 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/06/19 15:58:20 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "libft.h"
 
-int	main(int argv, char **argc)
+void	*ft_memcpy(void *dest, const void *src, size_t len)
 {
-	(void) argv;
-	(void) argc;
-	ft_printf("Hlo, World!\n");
-	return (0);
+	unsigned char	*d;
+	unsigned char	*s;
+
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	if (!len || (!dest && !src))
+		return (dest);
+	while (len--)
+		*d++ = *s++;
+	return (dest);
 }

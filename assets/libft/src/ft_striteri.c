@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/07/30 19:21:08 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/04/27 15:50:20 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/06/19 15:58:49 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "libft.h"
 
-int	main(int argv, char **argc)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	(void) argv;
-	(void) argc;
-	ft_printf("Hlo, World!\n");
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+	{
+		f(i, s + i);
+		i++;
+	}
 }

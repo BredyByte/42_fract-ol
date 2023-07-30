@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/07/30 19:21:08 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/04/21 15:28:22 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/06/19 15:59:29 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "libft.h"
 
-int	main(int argv, char **argc)
+size_t	ft_strlcat(char *dest, const char *src, size_t len)
 {
-	(void) argv;
-	(void) argc;
-	ft_printf("Hlo, World!\n");
-	return (0);
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (dest[i] && i < len)
+		i++;
+	while (src[j] && (i + j + 1) < len)
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	if (i < len)
+		dest[i + j] = '\0';
+	return (i + ft_strlen(src));
 }

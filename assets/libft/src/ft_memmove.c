@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/07/30 19:21:08 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/04/19 15:47:39 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/06/19 15:58:25 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "libft.h"
 
-int	main(int argv, char **argc)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	(void) argv;
-	(void) argc;
-	ft_printf("Hlo, World!\n");
-	return (0);
+	unsigned char	*s;
+	unsigned char	*d;
+
+	s = (unsigned char *)src;
+	d = (unsigned char *)dest;
+	if (!src && !dest)
+		return (dest);
+	if (src < dest)
+		while (len--)
+			d[len] = s[len];
+	else
+		while (len--)
+			*d++ = *s++;
+	return (dest);
 }

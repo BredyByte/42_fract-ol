@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/07/30 19:21:08 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/05/11 20:35:54 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/06/19 16:21:35 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "libft.h"
 
-int	main(int argv, char **argc)
+int	ft_puthexa(unsigned long long n, char c)
 {
-	(void) argv;
-	(void) argc;
-	ft_printf("Hlo, World!\n");
-	return (0);
+	unsigned long long	count;
+
+	count = 0;
+	if (n >= 16)
+		count += ft_puthexa(n / 16, c);
+	if (c == 'x')
+		ft_putchar("0123456789abcdef"[n % 16]);
+	else if (c == 'X')
+		ft_putchar("0123456789ABCDEF"[n % 16]);
+	count++;
+	return (count);
 }
