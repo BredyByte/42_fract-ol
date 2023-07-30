@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile_Unix.mk                                   :+:    :+:             #
-#                                                      +:+                     #
-#    By: W2Wizard <w2.wizzard@gmail.com>              +#+                      #
-#                                                    +#+                       #
-#    Created: 2022/02/26 21:36:38 by W2Wizard      #+#    #+#                  #
-#    Updated: 2022/07/05 14:53:23 by jobvan-d      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile_Unix.mk                                   :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/02/26 21:36:38 by W2Wizard          #+#    #+#              #
+#    Updated: 2023/07/30 18:15:20 by dbredykh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,14 +21,15 @@ MAGENTA	:= \033[35;1m
 CYAN	:= \033[36;1m
 WHITE	:= \033[37;1m
 RESET	:= \033[0m
+U_LINE	:= \033[4m
 
 #//= Make Rules =//#
 $(NAME): $(OBJS)
 	@ar rc $@ $^
-	@echo "$(GREEN)$(BOLD)Done$(RESET)"
+	@echo "\n$(WHITE)$(U_LINE)🌪  MLX42: Compiled 🌪$(RESET)\n"
 
 %.o: %.c $(HDRS)
-	@echo "$(GREEN)$(BOLD)Compiling:$(RESET) $(notdir $<)"
+	@echo "$(BLUE)Compiling:$(RESET) $(notdir $<)"
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 # Convert shaders to .c files
@@ -37,7 +38,7 @@ $(SRC_DIR)/mlx_%_shader.c: $(SHADER_DIR)/default.%
 	@bash tools/compile_shader.sh $< > $@
 
 clean:
-	@echo "$(RED)Cleaning$(RESET)"
+	@echo "$(RED)Cleaning...$(RESET)"
 	@rm -f $(OBJS) $(SHDR)
 
 fclean: clean

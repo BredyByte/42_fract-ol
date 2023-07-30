@@ -1,44 +1,47 @@
-NAME = fractol.a
+NAME = fractol
 
 CC = cc
-CFLAGS = -Wextra -Werror -Wall
-REMOVE = rm -rf
-ARFLAGS = ar -rcs
+CFLAGS = -Wextra -Wall -Werror
+REMOVE = rm -r
 
 OBJ_PATH = obj
 SRC_PATH = src
-INC_PATH = inc
+INC_PATH = include
+MLX_PATH = MLX42
+MLX_LIB_PATH = MLX42/libmlx42.a
 
-SRC := $(wildcard $(SRC_PATH)/*.c)
-OBJ = $(addprefix $(OBJ_PATH)/, $(notdir $(SRC:.c=.o)))
+HEADERS	= -I $(INC_PATH) -I $(MLX_PATH)/include/MLX42
+LIBS = ./$(MLX_PATH)/libmlx42.a -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
+SRC =  $(wildcard $(SRC_PATH)/*.c)
+OBJ = $(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
 
-.PHONY: all clean fclean re
+B_RED = \033[1;31m
+B_GREEN = \033[1;32m
+BLUE = \033[36m
+RESET = \033[0m
+U_LINE = \033[4m
 
-.SILENT:
-
-R = \033[1;31m
-G = \033[1;32m
-C = \033[1;36m
-O = \033[1;38;5;208m
-P = \033[1;38;5;141m
-END = \033[0m
-
-all: $(NAME)
+all: $(MLX_LIB_PATH) $(NAME)
 
 $(NAME): $(OBJ)
-	$(ARFLAGS) $@ $(OBJ)
-	@echo "\n$(P)[Compiled $(C)'$(NAME)'$(G)successfully]\n$(END)"
+	@$(CC) $(OBJ) $(LIBS) $(HEADERS) -o $@
+	@echo "\n$(U_LINE)✅$(BLUE) $(NAME): Compiled ✅$(RESET) \n"
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC_PATH)/fractol.h
-	mkdir -p $(OBJ_PATH)
-	$(CC) $(CFLAGS) -I $(INC_PATH) -c $< -o $@
+$(MLX_LIB_PATH):
+	@$(MAKE) -C $(MLX_PATH)
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir -p $(OBJ_PATH)
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 clean:
-	$(REMOVE) $(OBJ) $(OBJ_PATH)
-	@echo "\n$(Y)[Cleaned $(C) '$(NAME)' objects $(Y)successfully]\n$(END)"
+	@$(REMOVE) $(OBJ_PATH)
+	@$(MAKE) -C $(MLX_PATH) clean
 
 fclean: clean
-	$(REMOVE) $(NAME)
-	@echo "$(R)[Removed $(C) '$(NAME)' $(R)successfully]\n$(END)"
+	@$(REMOVE) $(NAME)
+	@$(MAKE) -s -C $(MLX_PATH) fclean
 
 re: fclean all
+
+.PHONY: all clean fclean re
