@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/07/30 19:21:08 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:44:38 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argv, char **argc)
 {
 	(void) argv;
 	(void) argc;
-	ft_printf("Hlo, World!\n");
+	int fd = open("hello.txt", 0);
+	ft_printf("%s", get_next_line(fd));
 	return (0);
 }

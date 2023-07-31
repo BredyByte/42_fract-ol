@@ -6,7 +6,7 @@
   <sub>Written by <a href="https://portfolio.w2wizard.dev/">W2.Wizard</a> for the 42 Network</sub>
     <div align="center">
 	</br>
-	<img src="https://img.shields.io/github/license/codam-coding-college/MLX42" alt="License GPL2.0"> 
+	<img src="https://img.shields.io/github/license/codam-coding-college/MLX42" alt="License GPL2.0">
 	<img src="https://svgshare.com/i/Zhy.svg" alt="Linux">
 	<img src="https://svgshare.com/i/ZjP.svg" alt="MacOS">
 	<img src="https://svgshare.com/i/ZhY.sv" alt="Windows">
@@ -45,7 +45,7 @@ In the very end a library is generated, compile your program with this library!
 ### For MacOS:
 
 1. Download MLX42
-```bash 
+```bash
 ➜  ~ git clone https://github.com/codam-coding-college/MLX42.git
 ```
 
@@ -61,7 +61,7 @@ Through brew:
 
 Or, if studying at Codam, you can find GLFW in the [Managed Software Center](munki://detail-GLFW).
 
-3. [Download and build MLX42](#download-and-build---mlx42) 
+3. [Download and build MLX42](#download-and-build---mlx42)
 
 4. Compile Program
 
@@ -77,7 +77,7 @@ You might have to specify the location explicitly:
 
 However, with 42Homebrew you have additionally specify the location of the library like here:
 ```bash
-➜  ~ gcc main.c libmlx42.a -I include -lglfw -L "/Users/$USER/.brew/opt/glfw/lib/"
+➜  ~ gcc main.c libmlx42.a -I include -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
 ```
 
 Or, if studying at Codam, compile using the following flags:
@@ -97,7 +97,7 @@ Or, if studying at Codam, compile using the following flags:
    If not possible, move the lib file to the root of MLX42 and move the GLFW directory in include to the include of MLX42.
    NOTE: For the lib choose the appropriate `.a` & `.dylib` file depending on your architecture.
 
-4. [Download and build MLX42](#download-and-build---mlx42) 
+4. [Download and build MLX42](#download-and-build---mlx42)
 
 When compiling with the static library, directly you should compile your program like this:
 ```bash
@@ -120,7 +120,7 @@ There will be a pop-up at the bottom telling you that an application tried to ru
 1. Install the necessary packages:
 
 For Debian like (Ubuntu, Mint, Pop OS...):
-```bash 
+```bash
 ➜  ~ sudo apt update
 ➜  ~ sudo apt install build-essential libx11-dev libglfw3-dev libglfw3 xorg-dev
 ```
@@ -135,10 +135,10 @@ OR (if you use sway/wlroots compositor or other wayland compositor)
 ➜  ~ sudo pacman -S glfw-wayland
 ```
 
-2. [Download and build MLX42](#download-and-build---mlx42) 
+2. [Download and build MLX42](#download-and-build---mlx42)
 
 3. Create a ```main.c``` file, include ```MLX42/MLX42.h```, compile with ```-ldl -lglfw (or -lglfw3) -pthread -lm```, make sure to also do ```-I <include_path>```.
- 
+
 4. Run.
 
 ----
@@ -178,23 +178,23 @@ and they might not even show up in the list until the first time you start the a
 
 1. Download & Install [MinGW](https://sourceforge.net/projects/mingw/)
 
-2. Simply click continue, select whatever your choice is. 
+2. Simply click continue, select whatever your choice is.
    Once reaching the MinGW Installation Manager select:
     - mingw32-base
-    - mingw32-gcc-g++ 
+    - mingw32-gcc-g++
 
 3. Apply by going to `Installation > Apply Changes`, after it's done, you may close the window.
 
-4. Download & Install [CMake](https://cmake.org/download/). 
+4. Download & Install [CMake](https://cmake.org/download/).
 	- Use the installer and select all default options.
 
-5. For Windows we need to install an additional component to **make** the **make** command available. 
+5. For Windows we need to install an additional component to **make** the **make** command available.
 
 	- Using the [chocolatey package manager](https://chocolatey.org/)
-		```bash 
+		```bash
 		➜  ~ choco install make
 		```
-	
+
 	-  Using [GnuWin](https://sourceforge.net/projects/gnuwin32/files/make/3.81/make-3.81.exe/download) (download & install)
 
 6. If you used all default options, add these paths to your SYSTEM Environment variables:
@@ -219,13 +219,13 @@ and they might not even show up in the list until the first time you start the a
 
 13. Go to the directory you assigned in Step 10. Copy the GLFW folder in the include folder to `C:\MinGW\include` & copy the .a file in the lib folder to `C:\MinGW\lib`.
 
-14. [Download and build MLX42](#download-and-build---mlx42) 
+14. [Download and build MLX42](#download-and-build---mlx42)
 
 15. Compile your program with these flags:
  - `-lglfw3`
  - `-lopengl32`
  - `-lgdi32`
- 
+
  In the end you should have something like:
 ```bash
 ➜  ~ gcc main.c <Additional .c Files> libmlx42.a -lglfw3 -lopengl32 -lgdi32
@@ -235,7 +235,7 @@ and they might not even show up in the list until the first time you start the a
 
 ## Download and build - MLX42
 
-```bash 
+```bash
 ➜  ~ git clone https://github.com/codam-coding-college/MLX42.git
 ➜  ~ cd MLX42
 ➜  ~ make

@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:12:49 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/06/19 16:27:38 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:38:12 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@
 # include <string.h>
 # include <stdio.h>
 # include <stdarg.h>
+# include <fcntl.h>
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 void		ft_bzero(void *s, size_t n);
 int			ft_isalnum(int c);
@@ -59,15 +58,6 @@ void		ft_putchar_fd(char c, int fd);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
-t_list		*ft_lstnew(void *content);
-void		ft_lstadd_front(t_list **lst, t_list *new);
-int			ft_lstsize(t_list *lst);
-t_list		*ft_lstlast(t_list *lst);
-void		ft_lstadd_back(t_list **lst, t_list *new);
-void		ft_lstdelone(t_list *lst, void (*del)(void *));
-void		ft_lstclear(t_list **lst, void (*del)(void *));
-void		ft_lstiter(t_list *lst, void (*f)(void *));
-t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int			ft_printf(const char *str, ...);
 size_t		ft_putstr(char *str);
 size_t		ft_putchar(int c);
@@ -76,5 +66,7 @@ size_t		ft_putdeclong(unsigned int n);
 char		*ft_itoalong(long n);
 int			ft_putvoid(void *p);
 int			ft_puthexa(unsigned long long nb, char ch);
+char		*get_next_line(int fd);
+char		*ft_strjoin_changed(char *s1, char *s2);
 
 #endif
