@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:12:49 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/07/31 17:38:12 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/03 15:29:13 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ size_t		ft_putdeclong(unsigned int n);
 char		*ft_itoalong(long n);
 int			ft_putvoid(void *p);
 int			ft_puthexa(unsigned long long nb, char ch);
+char		*ft_free(char *buffer, char *buf);
 char		*get_next_line(int fd);
-char		*ft_strjoin_changed(char *s1, char *s2);
 
 #endif

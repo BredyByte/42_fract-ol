@@ -55,4 +55,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re $(MLX_LIB_PATH) $(LIBFT_LIB_PATH)

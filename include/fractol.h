@@ -11,5 +11,6 @@
 #define WIDTH 5120
 #define HEIGHT 2880
 
+char *ft_read_all(int fd);
 
 # endif
