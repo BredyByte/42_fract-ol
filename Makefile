@@ -1,7 +1,7 @@
 NAME = fractol
 
 CC = cc
-CFLAGS = -Wextra -Wall -Werror
+CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
 REMOVE = rm -r
 
 OBJ_PATH = obj
@@ -14,8 +14,7 @@ MLX_LIB_PATH = assets/MLX42/libmlx42.a
 LIBFT_PATH = assets/libft
 LIBFT_LIB_PATH = assets/libft/libft.a
 
-HEADERS	= -I $(INC_PATH) -I $(MLX_PATH)/include/MLX42 -I $(LIBFT_PATH)/include/libft
-LIBS = $(MLX_LIB_PATH) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/"
+HEADERS	= -I $(MLX_PATH)/include/MLX42 -I $(LIBFT_PATH)/include/ -I ./include
 
 SRC =  $(wildcard $(SRC_PATH)/*.c)
 OBJ = $(SRC:$(SRC_PATH)/%.c=$(OBJ_PATH)/%.o)
@@ -30,7 +29,7 @@ all: $(MLX_LIB_PATH) $(LIBFT_LIB_PATH) $(NAME)
 .SILENT: all $(MLX_LIB_PATH) $(LIBFT_LIB_PATH) $(NAME) $(OBJ) clean fclean re
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(LIBFT_LIB_PATH) $(LIBS) $(HEADERS) -o $@
+	$(CC) $(OBJ) $(LIBFT_LIB_PATH) $(MLX_LIB_PATH) -lglfw -L "/Users/dbredykh/.brew/opt/glfw/lib/" $(HEADERS) -o $@
 	echo "\n$(ORANGE)$(U_LINE)⭐️ $(NAME): Compiled ⭐️$(RESET) \n"
 
 $(MLX_LIB_PATH):

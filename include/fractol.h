@@ -8,8 +8,8 @@
 #include <math.h>
 #include "../assets/MLX42/include/MLX42/MLX42.h"
 #include "../assets/libft/include/libft.h"
-#define WIDTH 5120
-#define HEIGHT 2880
+#define SIZE 1500
+
 
 char *ft_read_all(int fd);
 
