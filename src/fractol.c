@@ -6,67 +6,74 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/05 20:39:26 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:05:53 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_helper(void)
+void	ft_fract_data_init(t_fractal *f, int f_type)
 {
-	int	fd;
+	f->max_iter = 100;
+	f->x = 0;
+	f->y = 0;
+	f->type = f_type;
+	f->k = 0;
+	f->h = 0;
+	f->zoom = 1.0;
+}
 
-	fd = open("assets/to_read_files/helper.h", 0);
-	if (fd < 0)
+void	ft_draw_fractal(t_fractal *f)
+{
+	if (f->type == 1)
 	{
-		ft_putstr("Error: can't open helper.h\n");
-		exit(1);
+		mlx_set_window_title(f->mlx, "Mandelbrot");
+		ft_calc_mandelbrot(f);
 	}
-	ft_printf("%s\n", ft_read_all(fd));
-}
+	else if (f->type == 2)
+	{
+		mlx_set_window_title(f->mlx, "Julia");
+		ft_calc_julia(f);
+	}
+	else if (f->type == 3)
+	{
+		mlx_set_window_title(f->mlx, "Burning ship");
+		ft_calc_ship(f);
+	}
 
-int	ft_checker(int num, const char *index)
-{
-	int	frac_index;
-
-	if (num != 2)
-		return (0);
-	frac_index = ft_atoi(index);
-	if (frac_index >= 1 && frac_index <= 3)
-		return (1);
-	else
-		return (0);
-}
-
-void	ft_test(mlx_key_data_t keydata, void *param)
-{
-	if (keydata.key == MLX_KEY_ESCAPE)
-		mlx_close_window(param);
-}
-
-int	ft_init(void)
-{
-	mlx_t		*mlx;
-	mlx_image_t	*g_img;
-
-	mlx = mlx_init(SIZE, SIZE, "Fractol", false);
-	g_img = mlx_new_image(mlx, 750, 750);
-	if (!mlx)
-		return (EXIT_FAILURE);
-	memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
-	mlx_image_to_window(mlx, g_img, 0, 0);
-	mlx_key_hook(mlx, &ft_test, mlx);
-	mlx_loop(mlx);
-	mlx_delete_image(mlx, g_img);
-	mlx_terminate(mlx);
-	return (EXIT_SUCCESS);
 }
 
 int	main(int argv, char **argc)
 {
-	if (!ft_checker(argv, argc[1]))
+	int			f_type;
+	t_fractal	*f;
+
+	f_type = ft_checker(argv, argc[1]);
+	if (!f_type)
 		ft_helper();
-	else
-		return (ft_init());
+	f = malloc(sizeof(t_fractal));
+	if (!f)
+		exit (EXIT_FAILURE);
+	ft_fract_data_init(f, f_type);
+	f->mlx = mlx_init(SIZE, SIZE, "Fractol", false);
+	if (!f->mlx)
+	{
+		free(f);
+		exit (EXIT_FAILURE);
+	}
+	f->g_img = mlx_new_image(f->mlx, 750, 750);
+	if (!f->g_img)
+	{
+		mlx_terminate(f->mlx);
+		free(f);
+		exit (EXIT_FAILURE);
+	}
+	ft_draw_fractal(f);
+	mlx_image_to_window(f->mlx, f->g_img, 0, 0);
+	mlx_key_hook(f->mlx, &ft_hooks, f->mlx);
+	mlx_loop(f->mlx);
+	mlx_delete_image(f->mlx, f->g_img);
+	mlx_terminate(f->mlx);
+	free(f);
 	return (0);
 }

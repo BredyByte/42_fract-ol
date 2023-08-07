@@ -29,7 +29,7 @@ all: $(MLX_LIB_PATH) $(LIBFT_LIB_PATH) $(NAME)
 .SILENT: all $(MLX_LIB_PATH) $(LIBFT_LIB_PATH) $(NAME) $(OBJ) clean fclean re
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(LIBFT_LIB_PATH) $(MLX_LIB_PATH) -lglfw -L "/Users/dbredykh/.brew/opt/glfw/lib/" $(HEADERS) -o $@
+	$(CC) $(OBJ) $(LIBFT_LIB_PATH) $(MLX_LIB_PATH) -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" $(HEADERS) -o $@
 	echo "\n$(ORANGE)$(U_LINE)⭐️ $(NAME): Compiled ⭐️$(RESET) \n"
 
 $(MLX_LIB_PATH):
