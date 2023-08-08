@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/07 20:05:53 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:17:33 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_fract_data_init(t_fractal *f, int f_type)
 {
-	f->max_iter = 100;
+	f->max_iter = 10;
 	f->x = 0;
 	f->y = 0;
 	f->type = f_type;
 	f->k = 0;
 	f->h = 0;
-	f->zoom = 1.0;
+	f->zoom = 3.0;
 }
 
 void	ft_draw_fractal(t_fractal *f)
@@ -40,7 +40,6 @@ void	ft_draw_fractal(t_fractal *f)
 		mlx_set_window_title(f->mlx, "Burning ship");
 		ft_calc_ship(f);
 	}
-
 }
 
 int	main(int argv, char **argc)
@@ -57,20 +56,13 @@ int	main(int argv, char **argc)
 	ft_fract_data_init(f, f_type);
 	f->mlx = mlx_init(SIZE, SIZE, "Fractol", false);
 	if (!f->mlx)
-	{
-		free(f);
-		exit (EXIT_FAILURE);
-	}
-	f->g_img = mlx_new_image(f->mlx, 750, 750);
+		ft_errors(MLX_ERR, f);
+	f->g_img = mlx_new_image(f->mlx, SIZE, SIZE);
 	if (!f->g_img)
-	{
-		mlx_terminate(f->mlx);
-		free(f);
-		exit (EXIT_FAILURE);
-	}
+		ft_errors(IMG_ERR, f);
 	ft_draw_fractal(f);
 	mlx_image_to_window(f->mlx, f->g_img, 0, 0);
-	mlx_key_hook(f->mlx, &ft_hooks, f->mlx);
+	mlx_key_hook(f->mlx, &ft_hooks, f);
 	mlx_loop(f->mlx);
 	mlx_delete_image(f->mlx, f->g_img);
 	mlx_terminate(f->mlx);

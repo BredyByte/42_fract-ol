@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fn_help_utils.c                                    :+:      :+:    :+:   */
+/*   fn_errors_controller.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 14:44:05 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/08 10:47:59 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/08/08 10:57:48 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/08/08 10:59:19 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_helper(void)
+static void	ft_mlx_err(t_fractal *f)
 {
-	int	fd;
-
-	fd = open("assets/to_read_files/helper.h", 0);
-	if (fd < 0)
-	{
-		ft_putstr("Error: can't open helper.h\n");
-		exit(1);
-	}
-	ft_printf("%s\n", ft_read_all(fd));
-	exit(1);
+	free(f);
+	exit (EXIT_FAILURE);
 }
 
-int	ft_checker(int num, const char *index)
+static void	ft_img_err(t_fractal *f)
 {
-	int	frac_index;
+	mlx_terminate(f->mlx);
+	ft_mlx_err(f);
+}
 
-	if (num != 2)
-		return (0);
-	frac_index = ft_atoi(index);
-	if (frac_index >= 1 && frac_index <= 3)
-		return (frac_index);
-	else
-		return (0);
+void	ft_errors(int type, t_fractal *f)
+{
+	if (type == MLX_ERR)
+		ft_mlx_err(f);
+	if (type == MLX_ERR)
+		ft_img_err(f);
 }

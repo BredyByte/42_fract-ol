@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 15:55:57 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/07 20:12:17 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:18:55 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,17 @@ void	hsv_to_rgb(float h, float s, float v, int *r, int *g, int *b)
 	*b = *b > 255 ? 255 : *b < 0 ? 0 : *b;
 }
 
-void	put_pixel(t_fractal *f)
-{
-/* 	int	r, g, b; */
 
-	if (f->i == f->max_iter)
+void	put_pixel(t_fractal *f, int iteration)
+{
+	int	r, g, b;
+
+	if (iteration == f->max_iter)
 		mlx_put_pixel(f->g_img, f->x, f->y, 0x000000FF);
 	else
 	{
-		/* hsv_to_rgb((f->i % 256) / 255.0 * 360, 100, (f->i < f->max_iter) * 100, &r, &g, &b); */
-		mlx_put_pixel(f->g_img, f->x, f->y, 0xFF0000FF);
+		hsv_to_rgb((iteration % 256) / 255.0 * 360, 100, (iteration < f->max_iter) * 100, &r, &g, &b);
+		mlx_put_pixel(f->g_img, f->x, f->y, rgb(r, g, b));
 	}
 }
 
@@ -79,16 +80,16 @@ void	iterate_mandelbrot(t_fractal *f)
 
 void	ft_calc_mandelbrot(t_fractal *f)
 {
-	while (f->x < SIZE)
+	while (f->y < SIZE)
 	{
-		f->y = 0;
-		while (f->y < SIZE)
+		f->x = 0;
+		while (f->x < SIZE)
 		{
 			iterate_mandelbrot(f);
-			put_pixel(f);
-			f->y++;
+			put_pixel(f, f->i);
+			f->x++;
 		}
-		f->x++;
+		f->y++;
 	}
 }
 
