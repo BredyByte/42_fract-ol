@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fn_calc_fractals.c                                 :+:      :+:    :+:   */
+/*   fn_calc_fract.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 15:55:57 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/11 16:48:36 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/11 19:29:43 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_calc_mandelbrot(t_fractal *f)
 		f->re = f->temp;
 		f->i++;
 	}
-	ft_put_pixel(f, f->i);
+	ft_put_pixel(f);
 }
 
 void	ft_calc_julia(t_fractal *f)

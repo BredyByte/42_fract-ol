@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 16:00:14 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/11 17:41:53 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:46:05 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_fract_data_init(t_fractal *f, int f_type)
 {
-	f->max_iter = 134;
+	f->max_iter = 60;
 	f->type = f_type;
 	f->k = -0.5;
 	f->h = 0;
