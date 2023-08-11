@@ -1,16 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fn_help_utils.c                                    :+:      :+:    :+:   */
+/*   fn_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 14:44:05 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/08 10:47:59 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/08/11 16:00:14 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/08/11 17:41:53 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	ft_fract_data_init(t_fractal *f, int f_type)
+{
+	f->max_iter = 134;
+	f->type = f_type;
+	f->k = -0.5;
+	f->h = 0;
+	f->zoom = 3.0;
+}
+
+void	ft_terminate(t_fractal *f)
+{
+	mlx_delete_image(f->mlx, f->g_img);
+	mlx_terminate(f->mlx);
+	free(f);
+}
+
+char	*ft_take_name(int f_type)
+{
+	if (f_type == 1)
+		return ("Mandelbrot");
+	else if (f_type == 2)
+		return ("Julia");
+	else if (f_type == 2)
+		return ("Burning ship");
+	else
+		return ("Fractol");
+}
 
 void	ft_helper(void)
 {

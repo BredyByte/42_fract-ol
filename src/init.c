@@ -1,71 +1,70 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/08 13:17:33 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/11 17:54:02 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_fract_data_init(t_fractal *f, int f_type)
-{
-	f->max_iter = 10;
-	f->x = 0;
-	f->y = 0;
-	f->type = f_type;
-	f->k = 0;
-	f->h = 0;
-	f->zoom = 3.0;
-}
-
-void	ft_draw_fractal(t_fractal *f)
+void	ft_fract_typify(t_fractal *f)
 {
 	if (f->type == 1)
-	{
-		mlx_set_window_title(f->mlx, "Mandelbrot");
 		ft_calc_mandelbrot(f);
-	}
 	else if (f->type == 2)
-	{
-		mlx_set_window_title(f->mlx, "Julia");
 		ft_calc_julia(f);
-	}
 	else if (f->type == 3)
-	{
-		mlx_set_window_title(f->mlx, "Burning ship");
 		ft_calc_ship(f);
+}
+
+void	ft_draw_fract(t_fractal *f)
+{
+	f->y = 0;
+	while (f->y < SIZE)
+	{
+		f->x = 0;
+		while (f->x < SIZE)
+		{
+			ft_fract_typify(f);
+			f->x++;
+		}
+		f->y++;
 	}
 }
 
-int	main(int argv, char **argc)
+void	fract_init(int f_type)
 {
-	int			f_type;
 	t_fractal	*f;
 
-	f_type = ft_checker(argv, argc[1]);
-	if (!f_type)
-		ft_helper();
 	f = malloc(sizeof(t_fractal));
 	if (!f)
 		exit (EXIT_FAILURE);
 	ft_fract_data_init(f, f_type);
-	f->mlx = mlx_init(SIZE, SIZE, "Fractol", false);
+	f->mlx = mlx_init(SIZE, SIZE, ft_take_name(f_type), false);
 	if (!f->mlx)
 		ft_errors(MLX_ERR, f);
 	f->g_img = mlx_new_image(f->mlx, SIZE, SIZE);
 	if (!f->g_img)
 		ft_errors(IMG_ERR, f);
-	ft_draw_fractal(f);
+	ft_draw_fract(f);
 	mlx_image_to_window(f->mlx, f->g_img, 0, 0);
-	mlx_key_hook(f->mlx, &ft_hooks, f);
+	mlx_loop_hook(f->mlx, &ft_hooks, f);
 	mlx_loop(f->mlx);
-	mlx_delete_image(f->mlx, f->g_img);
-	mlx_terminate(f->mlx);
-	free(f);
+}
+
+int	main(int argv, char **argc)
+{
+	int			f_type;
+
+	f_type = ft_checker(argv, argc[1]);
+	if (!f_type)
+		ft_helper();
+	else
+		fract_init(f_type);
 	return (0);
 }
