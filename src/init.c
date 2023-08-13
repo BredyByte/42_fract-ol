@@ -6,9 +6,11 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/11 17:54:02 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/13 17:22:02 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "fractol.h"
 
 #include "fractol.h"
 
@@ -53,7 +55,7 @@ void	fract_init(int f_type)
 		ft_errors(IMG_ERR, f);
 	ft_draw_fract(f);
 	mlx_image_to_window(f->mlx, f->g_img, 0, 0);
-	mlx_loop_hook(f->mlx, &ft_hooks, f);
+	mlx_loop_hook(f->mlx, &ft_loop_hook, f);
 	mlx_loop(f->mlx);
 }
 
@@ -61,7 +63,7 @@ int	main(int argv, char **argc)
 {
 	int			f_type;
 
-	f_type = ft_checker(argv, argc[1]);
+	f_type = ft_arg_checker(argv, argc[1]);
 	if (!f_type)
 		ft_helper();
 	else
