@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 10:59:52 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/13 17:20:58 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/13 21:09:54 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define SIZE 1100
+# define SIZE 900
 
 // error macros
 # define MLX_ERR 1
 # define IMG_ERR 2
-
 
 typedef struct s_rgba
 {
@@ -68,6 +67,7 @@ typedef struct s_fractal
 	int			max_iter;
 	t_palette	*palette;
 	t_palette	*palettes;
+	int			palette_index;
 	int			smooth;
 	int			type;
 
@@ -84,8 +84,6 @@ void		ft_calc_julia(t_fractal *f);
 void		ft_calc_ship(t_fractal *f);
 
 // fn_draw.c
-/* void	hsv_to_rgb(float h, float s, float v, int *r, int *g, int *b); */
-/* int		get_rgb(int r, int g, int b); */
 void		ft_put_pixel(t_fractal *f);
 
 // fn_errors.c
@@ -99,7 +97,7 @@ void		ft_helper(void);
 int			ft_arg_checker(int num, const char *index);
 
 // ft_get_color.c
-int			get_color(t_fractal *f);
+t_color		get_color_struct(t_fractal *f);
 
 // ft_get_palletes.c
 t_palette	*get_palettes(void);

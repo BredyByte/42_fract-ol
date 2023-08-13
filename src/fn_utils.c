@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/11 16:00:14 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/13 16:30:48 by dbredykh         ###   ########.fr       */
+/*   Created: 2023/08/13 20:51:00 by dbredykh          #+#    #+#             */
+/*   Updated: 2023/08/13 21:09:44 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_fract_data_init(t_fractal *f, int f_type)
 {
 	f->palettes = get_palettes();
+	f->palette_index = 0;
 	f->palette = &f->palettes[0];
 	f->max_iter = 35;
 	f->type = f_type;
