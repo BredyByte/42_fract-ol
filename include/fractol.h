@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 10:59:52 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/13 21:09:54 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/15 16:32:55 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define SIZE 900
+# define SIZE 750
 
 // error macros
 # define MLX_ERR 1
 # define IMG_ERR 2
+# define FD_ERR 3
 
 typedef struct s_rgba
 {
@@ -70,7 +71,7 @@ typedef struct s_fractal
 	int			palette_index;
 	int			smooth;
 	int			type;
-
+	int			palette_len;
 }				t_fractal;
 
 char		*ft_read_all(int fd);
@@ -83,23 +84,22 @@ void		ft_calc_mandelbrot(t_fractal *f);
 void		ft_calc_julia(t_fractal *f);
 void		ft_calc_ship(t_fractal *f);
 
-// fn_draw.c
 void		ft_put_pixel(t_fractal *f);
-
-// fn_errors.c
-void		ft_errors(int type, t_fractal *f);
+void		ft_error(int type, t_fractal *f);
 
 // fn_utils.c
-void		ft_fract_data_init(t_fractal *f, int f_type);
-void		ft_terminate(t_fractal *f);
+void		terminate(t_fractal *f);
 char		*ft_take_name(int f_type);
-void		ft_helper(void);
+void		ft_usage(void);
 int			ft_arg_checker(int num, const char *index);
+int			ft_palletelen(t_fractal	*f);
+
+void		ft_put_helper(t_fractal *f);
 
 // ft_get_color.c
 t_color		get_color_struct(t_fractal *f);
 
 // ft_get_palletes.c
-t_palette	*get_palettes(void);
+t_palette	*ft_get_palettes(void);
 
 #endif

@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fn_utils.c                                         :+:      :+:    :+:   */
+/*   fn_fract_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 20:51:00 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/13 21:09:44 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/15 16:33:12 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_fract_data_init(t_fractal *f, int f_type)
+t_palette	*ft_get_palettes(void)
 {
-	f->palettes = get_palettes();
-	f->palette_index = 0;
-	f->palette = &f->palettes[0];
-	f->max_iter = 35;
-	f->type = f_type;
-	f->k = -0.5;
-	f->h = 0;
-	f->zoom = 3.5f;
-	f->smooth = true;
+	static t_palette	array[3];
+
+	array[0]
+		= (t_palette){5, 0, {0x0D1C33, 0x17373C, 0x2B6832, 0x4F9300, 0xA1D700}};
+	array[1]
+		= (t_palette){5, 0, {0x610B4B, 0x01A9DB, 0xF4FA58, 0xFE642E, 0xB40404}};
+	array[2]
+		= (t_palette){5, 0, {0x000000, 0x311B92, 0x512DA8, 0x6A1B9A, 0x4A148C}};
+	return (array);
 }
 
-void	ft_terminate(t_fractal *f)
+int	ft_palletelen(t_fractal	*f)
+{
+	int	i;
+
+	i = 0;
+	while (f->palettes[i].count)
+		i++;
+	return (i);
+}
+
+void	terminate(t_fractal *f)
 {
 	mlx_delete_image(f->mlx, f->g_img);
 	mlx_terminate(f->mlx);
@@ -42,31 +52,4 @@ char	*ft_take_name(int f_type)
 		return ("Burning ship");
 	else
 		return ("Fractol");
-}
-
-void	ft_helper(void)
-{
-	int	fd;
-
-	fd = open("assets/to_read_files/helper.h", 0);
-	if (fd < 0)
-	{
-		ft_putstr("Error: can't open helper.h\n");
-		exit(1);
-	}
-	ft_printf("%s\n", ft_read_all(fd));
-	exit(1);
-}
-
-int	ft_arg_checker(int num, const char *index)
-{
-	int	frac_index;
-
-	if (num != 2)
-		return (0);
-	frac_index = ft_atoi(index);
-	if (frac_index >= 1 && frac_index <= 3)
-		return (frac_index);
-	else
-		return (0);
 }

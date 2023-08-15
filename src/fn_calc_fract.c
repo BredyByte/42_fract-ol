@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 15:55:57 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/13 20:32:04 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/15 16:33:48 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_calc_mandelbrot(t_fractal *f)
 	while (f->re * f->re + f->im * f->im < (1 << 8) && f->i < f->max_iter)
 	{
 		f->temp = f->re * f->re - f->im * f->im + f->c_re;
-		f->im =	f->re * f->im * 2 + f->c_im;
+		f->im = f->re * f->im * 2 + f->c_im;
 		if (f->re == f->temp && f->i == f->im)
 		{
 			f->i = f->max_iter;

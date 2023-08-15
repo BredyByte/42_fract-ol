@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fn_errors_controller.c                             :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 10:57:48 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/08 10:59:19 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/15 15:57:03 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	ft_mlx_err(t_fractal *f)
+
+static void	mlx_err(t_fractal *f)
 {
 	free(f);
 	exit (EXIT_FAILURE);
 }
 
-static void	ft_img_err(t_fractal *f)
+static void	fd_err(t_fractal *f)
 {
-	mlx_terminate(f->mlx);
-	ft_mlx_err(f);
+	ft_putstr("Error: can't open file to open\n");
+	mlx_err(f);
 }
 
-void	ft_errors(int type, t_fractal *f)
+static void	img_err(t_fractal *f)
+{
+	mlx_terminate(f->mlx);
+	mlx_err(f);
+}
+
+void	ft_error(int type, t_fractal *f)
 {
 	if (type == MLX_ERR)
-		ft_mlx_err(f);
-	if (type == MLX_ERR)
-		ft_img_err(f);
+		mlx_err(f);
+	if (type == IMG_ERR)
+		img_err(f);
+	if (type == FD_ERR)
+		fd_err(f);
 }

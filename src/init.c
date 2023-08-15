@@ -6,13 +6,25 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/13 18:18:19 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/15 16:33:25 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-#include "fractol.h"
+void	fract_data_init(t_fractal *f, int f_type)
+{
+	f->palettes = ft_get_palettes();
+	f->palette_index = 0;
+	f->palette = &f->palettes[0];
+	f->max_iter = 35;
+	f->type = f_type;
+	f->k = -0.5;
+	f->h = 0;
+	f->zoom = 3.5f;
+	f->smooth = true;
+	f->palette_len = ft_palletelen(f);
+}
 
 void	ft_fract_typify(t_fractal *f)
 {
@@ -39,24 +51,26 @@ void	ft_draw_fract(t_fractal *f)
 	}
 }
 
-void	fract_init(int f_type)
+void	init(int f_type)
 {
 	t_fractal	*f;
 
 	f = malloc(sizeof(t_fractal));
 	if (!f)
 		exit (EXIT_FAILURE);
-	ft_fract_data_init(f, f_type);
-	f->mlx = mlx_init(SIZE, SIZE, ft_take_name(f_type), false);
+	fract_data_init(f, f_type);
+	f->mlx = mlx_init(1100, SIZE, ft_take_name(f_type), false);
 	if (!f->mlx)
-		ft_errors(MLX_ERR, f);
+		ft_error(MLX_ERR, f);
 	f->g_img = mlx_new_image(f->mlx, SIZE, SIZE);
 	if (!f->g_img)
-		ft_errors(IMG_ERR, f);
+		ft_error(IMG_ERR, f);
 	ft_draw_fract(f);
-	mlx_image_to_window(f->mlx, f->g_img, 0, 0);
+	mlx_image_to_window(f->mlx, f->g_img, 350, 0);
+	ft_put_helper(f);
 	mlx_loop_hook(f->mlx, &ft_loop_hook, f);
 	mlx_loop(f->mlx);
+	terminate(f);
 }
 
 int	main(int argv, char **argc)
@@ -65,8 +79,8 @@ int	main(int argv, char **argc)
 
 	f_type = ft_arg_checker(argv, argc[1]);
 	if (!f_type)
-		ft_helper();
+		ft_usage();
 	else
-		fract_init(f_type);
+		init(f_type);
 	return (0);
 }
