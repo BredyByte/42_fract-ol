@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fn_draw.c                                          :+:      :+:    :+:   */
+/*   ft_put_pixel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 16:41:55 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/13 20:45:09 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:06:01 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ void	ft_put_pixel(t_fractal *f)
 	t_color	col_struct;
 	int		color;
 
-	if (f->i == 0)
-		return ;
-	col_struct = get_color_struct(f);
 	if (f->i >= f->max_iter)
 		mlx_put_pixel(f->g_img, f->x, f->y, 0x000000FF);
 	else
 	{
+		col_struct = get_color_struct(f);
 		color = get_rgba(col_struct.rgba.r,
 				col_struct.rgba.g,
 				col_struct.rgba.b, col_struct.rgba.a);

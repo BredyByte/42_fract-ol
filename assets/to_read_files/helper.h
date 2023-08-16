@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:31:23 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/15 15:44:19 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:42:23 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,24 @@
 
 Helper:
 
-Change max itterator variable:
+Iterations value:
 
-	i - increase
-	d - decrease
+	i - increase.
+	d - decrease.
 
-Change color pallete:
+Color:
 
-	c - change color pallete
+	c - change color pallete.
+	s - turn off / on color smooth.
 
-Move fractal:
+Movements:
 
-	w - up
-	s - down
-	a - left
-	d - right
+	arrow_up - up.
+	arrow_down - down.
+	arrow_left - left.
+	arrow_right - right.
+
+Zoom:
+
+	z - zoom in.
+	x - zoom out.

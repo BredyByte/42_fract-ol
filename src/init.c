@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/15 16:33:25 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:40:59 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,21 @@ void	fract_data_init(t_fractal *f, int f_type)
 	f->palettes = ft_get_palettes();
 	f->palette_index = 0;
 	f->palette = &f->palettes[0];
+	f->palette_len = ft_palletelen(f);
+	f->smooth = true;
+	f->limx = -2;
+	f->limy = 2;
 	f->max_iter = 35;
 	f->type = f_type;
 	f->k = -0.5;
 	f->h = 0;
-	f->zoom = 3.5f;
-	f->smooth = true;
-	f->palette_len = ft_palletelen(f);
+	f->zoom = 3.5;
+	if (f_type == 2)
+	{
+		f->k = 0;
+		f->c_re = -0.8f;
+		f->c_im = 0.156f;
+	}
 }
 
 void	ft_fract_typify(t_fractal *f)

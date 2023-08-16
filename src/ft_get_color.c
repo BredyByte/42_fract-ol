@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:13:55 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/14 19:03:46 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/16 13:10:11 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static t_color	linear_color(double i, int max, t_palette *p)
 	else
 		index = i / max;
 	c = p->count - 1;
-	adjust = fmod(index, 1.0f / c) * c;
+	adjust = fmod(index, 1.0 / c) * c;
 	return (clerp((t_color)(p->colors[(int)(index * c) + 1]),
 		(t_color)(p->colors[(int)(index * c)]),
 		(int)(adjust + 1) - adjust));
@@ -55,7 +55,7 @@ static t_color	smooth_color(t_fractal *f)
 	double	zn;
 	double	nu;
 
-	zn = log(f->re * f->re + f->im * f->im) / 2.0f;
+	zn = log(f->z_re * f->z_re + f->z_im * f->z_im) / 2.0;
 	nu = log(zn / log(2)) / log(2);
 	i = f->i + 1 - nu;
 	if (i < 0)

@@ -1,6 +1,6 @@
 NAME = fractol
 
-CC = cc
+CC = gcc -g
 CFLAGS = -Wall -Wextra -Werror -Wunreachable-code -Ofast
 REMOVE = rm -r
 

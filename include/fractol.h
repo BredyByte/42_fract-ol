@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 10:59:52 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/15 16:32:55 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/16 15:01:30 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,16 @@ typedef struct s_fractal
 	mlx_image_t	*g_img;
 	float		k;
 	float		h;
-	float		re;
-	float		im;
-	float		temp;
-	double		zoom;
+	float		z_re;
+	float		z_im;
 	float		c_re;
 	float		c_im;
-	char		*addr;
+	float		zoom;
 	int			y;
 	int			i;
 	int			x;
-	int			endian;
+	int			limx;
+	int			limy;
 	int			max_iter;
 	t_palette	*palette;
 	t_palette	*palettes;
