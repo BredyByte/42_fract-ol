@@ -4,6 +4,7 @@
 		"__locale": "c",
 		"ios": "cpp",
 		"__tuple": "c",
-		"array": "c"
+		"array": "c",
+		"fractol.h": "c"
 	}
 }

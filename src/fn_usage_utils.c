@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:48:48 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/18 13:05:19 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:31:35 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,26 @@ void	ft_usage(void)
 		exit(EXIT_FAILURE);
 	ft_printf("%s\n", ft_read_all(fd));
 	close(fd);
-	exit(1);
+	exit(EXIT_FAILURE);
 }
 
-int	ft_arg_checker(int num, const char *index)
+void	ft_indata_checke(int num, const char **index, t_indata *int_data)
 {
-	int	frac_index;
-
 	if (num != 2)
-		return (0);
-	frac_index = ft_atoi(index);
-	if (frac_index >= 1 && frac_index <= 3)
-		return (frac_index);
+	{
+		if (int_data->f_type == 2)
+		{
+			int_data->f_type = ft_atoi(index[1]);
+			int_data->j_c_im = ft_atof(index[2]);
+			int_data->j_c_re = ft_atof(index[3]);
+		}
+		else
+			ft_usage();
+	}
+	if (int_data->f_type >= 1 && int_data->f_type <= 3)
+		init();
 	else
-		return (0);
+		ft_usage();
 }
 
 void	ft_put_helper(t_fractal *f)

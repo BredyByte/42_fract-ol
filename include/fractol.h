@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 10:59:52 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/18 13:02:29 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:25:20 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ typedef union u_color
 	t_rgba		rgba;
 }					t_color;
 
+typedef union s_in_data
+{
+	int			f_type;
+	double		j_c_re;
+	double		j_c_im;
+}					t_indata;
+
 typedef struct s_fractal
 {
 	mlx_t		*mlx;
@@ -69,9 +76,11 @@ typedef struct s_fractal
 	t_palette	*palettes;
 	int			palette_index;
 	int			smooth;
-	int			type;
 	int			palette_len;
+	t_indata	*initial_data;
 }				t_fractal;
+
+void		init(void);
 
 char		*ft_read_all(int fd);
 
@@ -90,7 +99,7 @@ void		ft_error(int type, t_fractal *f);
 void		terminate(t_fractal *f);
 char		*ft_take_name(int f_type);
 void		ft_usage(void);
-int			ft_arg_checker(int num, const char *index);
+void		ft_indata_checke(int num, const char **index, t_indata *int_data);
 int			ft_palletelen(t_fractal	*f);
 
 void		ft_put_helper(t_fractal *f);
