@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/06 15:55:57 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/16 16:12:10 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:13:41 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_calc_mandelbrot(t_fractal *f)
 {
-	float	temp;
+	double	temp;
 
-	f->c_re = (f->x - SIZE / 2.0) * f->zoom / SIZE + f->k;
-	f->c_im = (f->y - SIZE / 2.0) * f->zoom / SIZE + f->h;
+	f->c_re = (f->x - SIZE / 2.0f) * f->zoom / SIZE + f->k;
+	f->c_im = (f->y - SIZE / 2.0f) * f->zoom / SIZE + f->h;
 	f->z_re = 0;
 	f->z_im = 0;
 	f->i = 0;
@@ -25,7 +25,7 @@ void	ft_calc_mandelbrot(t_fractal *f)
 		&& f->i < f->max_iter)
 	{
 		temp = f->z_re * f->z_re - f->z_im * f->z_im + f->c_re;
-		f->z_im = f->z_re * f->z_im * 2 + f->c_im;
+		f->z_im = f->z_re * f->z_im * 2.0f + f->c_im;
 		if (f->z_re == temp && f->i == f->z_im)
 		{
 			f->i = f->max_iter;
@@ -39,7 +39,7 @@ void	ft_calc_mandelbrot(t_fractal *f)
 
 void	ft_calc_julia(t_fractal *f)
 {
-	float	temp;
+	double	temp;
 
 	f->z_re = (f->x - SIZE / 2.0) * f->zoom / SIZE + f->k;
 	f->z_im = (f->y - SIZE / 2.0) * f->zoom / SIZE + f->h;
@@ -62,7 +62,7 @@ void	ft_calc_julia(t_fractal *f)
 
 void	ft_calc_ship(t_fractal *f)
 {
-	float	temp;
+	double	temp;
 
 	f->c_re = (f->x - SIZE / 2.0) * f->zoom / SIZE + f->k;
 	f->c_im = (f->y - SIZE / 2.0) * f->zoom / SIZE + f->h;

@@ -6,13 +6,20 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:31:23 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/16 15:42:23 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/18 13:04:45 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 .
 
 Helper:
+
+Mouse :
+
+	can zoom in and zoom
+	out using the mouse wheel.
+
+ESC - exit.
 
 Iterations value:
 
@@ -33,5 +40,5 @@ Movements:
 
 Zoom:
 
-	z - zoom in.
-	x - zoom out.
+	z - zoom out.
+	x - zoom it.

@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:48:48 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/15 15:55:59 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/18 13:05:19 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_put_helper(t_fractal *f)
 		free(str);
 	}
 	str = get_next_line(fd);
-	cont = 8;
+	cont = 1;
 	while (str && cont++)
 	{
 		mlx_put_string(f->mlx, str, 20, cont * 20);

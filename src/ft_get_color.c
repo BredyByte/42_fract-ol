@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 15:13:55 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/16 13:10:11 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/18 11:58:40 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ t_color	get_color_struct(t_fractal *f)
 {
 	if (f->smooth)
 		return (smooth_color(f));
-	return (linear_color((double)f->i, f->max_iter, f->palette));
+	return (linear_color(f->i, f->max_iter, f->palette));
 }

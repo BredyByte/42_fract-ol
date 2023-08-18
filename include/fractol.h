@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 10:59:52 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/16 15:01:30 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/18 13:02:29 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,19 @@ typedef struct s_fractal
 {
 	mlx_t		*mlx;
 	mlx_image_t	*g_img;
-	float		k;
-	float		h;
-	float		z_re;
-	float		z_im;
-	float		c_re;
-	float		c_im;
-	float		zoom;
-	int			y;
-	int			i;
-	int			x;
-	int			limx;
-	int			limy;
-	int			max_iter;
+	double		k;
+	double		h;
+	double		z_re;
+	double		z_im;
+	double		c_re;
+	double		c_im;
+	double		zoom;
+	double		y;
+	double		i;
+	double		x;
+	double		limx;
+	double		limy;
+	double		max_iter;
 	t_palette	*palette;
 	t_palette	*palettes;
 	int			palette_index;

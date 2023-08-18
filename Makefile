@@ -24,7 +24,6 @@ RESET = \033[0m
 U_LINE = \033[4m
 YELLOW = \033[1;38;5;226m
 
-
 all: $(MLX_LIB_PATH) $(LIBFT_LIB_PATH) $(NAME)
 
 .SILENT: all $(MLX_LIB_PATH) $(LIBFT_LIB_PATH) $(NAME) $(OBJ) clean fclean re
@@ -43,6 +42,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	mkdir -p $(OBJ_PATH)
 	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 	echo "$(YELLOW)fractol Compiling:$(RESET) $(notdir $<)"
+
 clean:
 	$(REMOVE) $(OBJ_PATH)
 	$(MAKE) -C $(MLX_PATH) clean
