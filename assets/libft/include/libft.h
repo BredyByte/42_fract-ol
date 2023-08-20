@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:12:49 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/18 16:28:27 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:12:25 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int			ft_putvoid(void *p);
 int			ft_puthexa(unsigned long long nb, char ch);
 char		*ft_free(char *buffer, char *buf);
 char		*get_next_line(int fd);
-double		ft_atof(const char *str);
+double		ft_atof(char *str);
+int			ft_isspace(int c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 13:35:04 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/18 16:25:04 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/20 19:53:12 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,26 @@ void	fract_data_init(t_fractal *f)
 	f->k = -0.5;
 	f->h = 0;
 	f->zoom = 3.5;
-	if (f->initial_data->f_type == 2)
+	if (f->f_type == 2)
 	{
+		if (isnan(f->c_re) || !f->c_im)
+		{
+			f->c_re = -0.8;
+			f->c_im = 0.156;
+		}
 		f->k = 0;
-		f->c_re = -0.8f;
-		f->c_im = 0.156f;
 	}
-	if (f->initial_data->f_type == 3)
+	if (f->f_type == 3)
 		f->h = -0.6;
 }
 
 void	ft_fract_typify(t_fractal *f)
 {
-	if (f->initial_data->f_type == 1)
+	if (f->f_type == 1)
 		ft_calc_mandelbrot(f);
-	else if (f->initial_data->f_type == 2)
+	else if (f->f_type == 2)
 		ft_calc_julia(f);
-	else if (f->initial_data->f_type == 3)
+	else if (f->f_type == 3)
 		ft_calc_ship(f);
 }
 
@@ -60,15 +63,10 @@ void	ft_draw_fract(t_fractal *f)
 	}
 }
 
-void	init(void)
+void	init(t_fractal *f)
 {
-	t_fractal	*f;
-
-	f = malloc(sizeof(t_fractal));
-	if (!f)
-		exit (EXIT_FAILURE);
 	fract_data_init(f);
-	f->mlx = mlx_init(1100, SIZE, ft_take_name(f->initial_data->f_type), false);
+	f->mlx = mlx_init(1100, SIZE, ft_take_name(f->f_type), false);
 	if (!f->mlx)
 		ft_error(MLX_ERR, f);
 	f->g_img = mlx_new_image(f->mlx, SIZE, SIZE);
@@ -84,11 +82,11 @@ void	init(void)
 
 int	main(int argv, char **argc)
 {
-	t_indata	*int_data;
+	t_fractal	*f;
 
-	int_data = malloc(sizeof(t_indata));
-	if (!int_data)
+	f = malloc(sizeof(t_fractal));
+	if (!f)
 		exit (EXIT_FAILURE);
-	ft_indata_checke(argv, argc, int_data);
+	ft_indata_checke(argv, argc, f);
 	return (0);
 }

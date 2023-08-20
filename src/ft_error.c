@@ -6,12 +6,11 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 10:57:48 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/15 15:57:03 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/20 18:53:43 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
 
 static void	mlx_err(t_fractal *f)
 {

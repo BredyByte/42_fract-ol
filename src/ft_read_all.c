@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 18:09:54 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/15 16:11:39 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/20 19:27:33 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ char	*ft_read_all(int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		temp = line;
-		res = ft_strjoin(res, temp);
+		temp = ft_strjoin(res, line);
+		free(res);
 		free(line);
+		res = temp;
 		line = get_next_line(fd);
 	}
 	processed_res = ft_remove_first_and_last_line(res);

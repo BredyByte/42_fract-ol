@@ -6,41 +6,51 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 12:48:48 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/18 16:31:35 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/20 19:53:04 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	ft_usage(void)
+void	ft_usage(t_fractal *f)
 {
-	int	fd;
+	int		fd;
+	char	*res;
 
 	fd = open("assets/to_read_files/usage.h", 0);
 	if (fd < 0)
+	{
+		free(f);
 		exit(EXIT_FAILURE);
-	ft_printf("%s\n", ft_read_all(fd));
+	}
+	res = ft_read_all(fd);
+	ft_printf("%s\n", res);
 	close(fd);
+	free(f);
+	free(res);
 	exit(EXIT_FAILURE);
 }
 
-void	ft_indata_checke(int num, const char **index, t_indata *int_data)
+void	ft_indata_checke(int num, char **index, t_fractal *f)
 {
-	if (num != 2)
+	if (num == 2)
 	{
-		if (int_data->f_type == 2)
+		f->f_type = ft_atoi(index[1]);
+		if (f->f_type == 1 || f->f_type == 2 || f->f_type == 3)
 		{
-			int_data->f_type = ft_atoi(index[1]);
-			int_data->j_c_im = ft_atof(index[2]);
-			int_data->j_c_re = ft_atof(index[3]);
+			init(f);
+			return ;
 		}
-		else
-			ft_usage();
 	}
-	if (int_data->f_type >= 1 && int_data->f_type <= 3)
-		init();
-	else
-		ft_usage();
+	else if (num == 4 && ft_atoi(index[1]) == 2)
+	{
+		f->f_type = 2;
+		f->c_re = ft_atof(index[2]);
+		f->c_im = ft_atof(index[3]);
+		init(f);
+		return ;
+	}
+	ft_usage(f);
 }
 
 void	ft_put_helper(t_fractal *f)

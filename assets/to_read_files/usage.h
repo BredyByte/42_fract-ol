@@ -22,4 +22,6 @@ fractol_index {
 
 example:
 	./fractol 1
+	./fractol 2 -0.8 0.156 (if fractol_index == 2
+	you can add 2 more arguments to change the Julia set)
 */
