@@ -6,7 +6,7 @@
 /*   By: dbredykh <dbredykh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 15:31:23 by dbredykh          #+#    #+#             */
-/*   Updated: 2023/08/18 13:04:45 by dbredykh         ###   ########.fr       */
+/*   Updated: 2023/08/25 15:10:53 by dbredykh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Iterations value:
 
 Color:
 
-	c - change color pallete.
+	c - change the color pallete.
 	s - turn off / on color smooth.
 
 Movements:
