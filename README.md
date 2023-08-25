@@ -7,6 +7,10 @@
 
 ## About the Project
 
+This project aims to learn how to create graphical applications using the MLX42 library.
+
+MLX42 is a open source, cross-platform graphics library for C that abstracts away the underlying windowing system. This allows programmers to focus on the graphics instead of system specifics.
+
 A program implements the following fractals:
 
 - Mandelbrot set (selected with 1) 
@@ -14,6 +18,8 @@ A program implements the following fractals:
 - Burning Ship (selected with 3)
 
 The program is written in C using the MLX42 library for 2D graphics rendering.
+
+By completing this project, students will gain experience creating 2D graphics applications and working with an open source library. The fractal visualizations also provide an interesting mathematical component.
 
 ## Technologies Used
 
