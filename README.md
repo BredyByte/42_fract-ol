@@ -1,7 +1,7 @@
 
 # 👾 Fract'ol 👾 
 
-> This repository contains a "fract-ol" project that is part of the École 42 curriculum.
+> This repository contains "fract-ol" project that is part of the École 42 curriculum.
 
 <img width="1101" alt="Screen Shot 2023-08-25 at 3 12 12 PM" src="https://github.com/Dvaid0805/42_fractol/assets/81176650/ee129708-1d0f-450d-8388-75e682391b43">
 
